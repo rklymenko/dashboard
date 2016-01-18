@@ -1,0 +1,83 @@
+<% content_for :title, 'Case Profile' %>
+<% content_for :sidebar do %>
+    <ul>
+      <li><%= link_to '<i class="fa fa-trash"></i> delete case'.html_safe, new_case_path %></li>
+      <li><%= link_to '<i class="fa fa-tachometer"></i> dashboard'.html_safe, root_path %></li>
+    </ul>
+<% end %>
+<%= form_for(@case) do |f| %>
+    <% if @case.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@case.errors.count, "error") %> prohibited this case from being saved:</h2>
+
+          <ul>
+            <% @case.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="case-name">
+        Case name: <span><%= @case.name %></span>
+    </div>
+    <hr>
+    <div class="add-client">
+      <button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Add checklist</button>
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add checklist</h4>
+            </div>
+            <div class="modal-body">
+              <p><%= select_tag "checklist", options_from_collection_for_select(@checklist, "id", "title"), :class => "form-control" %></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" id="add_checklist">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="add-client clearfix">
+      <%= link_to 'add new client', '#', :onclick=>"$('.client-details').show()" %>
+    </div>
+    <hr>
+    <div class="client-details">
+      <div class="field">
+        <%= f.text_field :client_name , :placeholder=> "Client Name" , :class => "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.email_field :client_email , :placeholder=> "Client Email" , :class => "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :client_phone , :placeholder=> "Client Phone" , :class => "form-control" %>
+      </div>
+      <hr>
+    </div>
+
+
+
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Checklists</div>
+
+        <!-- List group -->
+        <ul class="list-group">
+          <li class="list-group-item">
+            Bootstrap Switch Success
+            <div class="material-switch pull-right">
+              <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" checked/>
+              <label for="someSwitchOptionSuccess" class="label-success"></label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
+
+<% end %>

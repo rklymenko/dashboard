@@ -1,0 +1,33 @@
+<% content_for :title, 'Dashboard' %>
+<% content_for :sidebar do %>
+    <ul>
+      <li><%= link_to '<i class="fa fa-folder-open"></i> template library'.html_safe, '/template_libraries' %></li>
+      <li><%= link_to '<i class="fa fa-briefcase"></i> add new case'.html_safe, cases_url %></li>
+    </ul>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Case</th>
+    <th>First Name</th>
+    <th>Progress</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @cases.each do |cs| %>
+      <tr>
+        <td><%= link_to cs.name, "/case_profile/#{cs.id}" %></td>
+        <td><%= cs.client_name %></td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
+              70%
+            </div>
+          </div>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,13 @@
+<% content_for :title, 'Template Library' %>
+<% content_for :sidebar do %>
+    <ul>
+      <li><%= link_to '<i class="fa fa-plus"></i> create checklist template'.html_safe, new_template_library_path %></li>
+      <li><%= link_to '<i class="fa fa-tachometer"></i> dashboard'.html_safe, root_path %></li>
+    </ul>
+<% end %>
+
+<ul>
+  <% @template_libraries.each do |template_library| %>
+      <li><%= link_to "<i class='fa fa-caret-down'></i> #{template_library.title}".html_safe, edit_template_library_path(template_library) %></li>
+  <% end %>
+</ul>

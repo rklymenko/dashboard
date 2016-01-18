@@ -1,0 +1,9 @@
+<% content_for :title, 'Create Case' %>
+<% content_for :sidebar do %>
+    <ul>
+      <li><%= link_to '<i class="fa fa-floppy-o"></i> save'.html_safe, '#', :onclick=>"$('.new_case').submit()" %></li>
+      <li><%= link_to '<i class="fa fa-undo"></i> cancel'.html_safe, cases_path %></li>
+    </ul>
+<% end %>
+
+<%= render 'form' %>

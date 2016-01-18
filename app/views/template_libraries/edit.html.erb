@@ -1,0 +1,10 @@
+<% content_for :title, 'Edit Checklist Template' %>
+<% content_for :sidebar do %>
+    <ul>
+      <li><%= link_to '<i class="fa fa-floppy-o"></i> save'.html_safe, '#', :onclick=>"$('.edit_template_library').submit()" %></li>
+      <li><%= link_to '<i class="fa fa-undo"></i> cancel'.html_safe, template_libraries_path %></li>
+      <li><%= link_to '<i class="fa fa-trash"></i> delete template'.html_safe, @template_library, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    </ul>
+<% end %>
+
+<%= render 'form' %>
